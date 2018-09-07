@@ -1,0 +1,24 @@
+Mathe dollargame
+
+
+1. Geldsumme auf Feld muss positiv sein oder 0
+2. genius= Anzahl Verbindungen - Anzahl Figuren + 1 => wenn anzahl geld mindestens dem genius entspricht dann geht das spiel auf
+3. Feld auf 500px x 500px behalten
+
+
+  Wenn danach Anzahl noch zu verteilende Punkte immernoch >= 4 dann nochmal rotierend verteilen, ansonsten komplett random.
+
+4. Verteile Geld:
+
+  Rechne Anzahl Punkte (5) - Anzahl Verbindungen (5=0) + 1 = (MINMONEY) (1)
+  Verteile allen punkten geld zwischen -5 und 5. Wenn alle Punkte verteilt, zusammenrechnen. Wenn anzahl < genius dann randompunkt differenz zuweisen
+
+  5. Rotierend Punkte hinzufügen. Ersteinmal punkte in jedem viertel des feldes verteilen:
+
+    1. X: 0-250, Y: 0-250
+    2. X: 251-500, Y 0-250
+    3. X: 251-500, Y: 251-500
+    4: X: 0-250, Y: 251-500
+
+  6. Verbindungen: Durchnschnitt 2 Verbindungen pro Knoten:
+    Wähle Random Knoten und mache eine verbindung falls noch keine besteht bis maximal anzahl knoten ( easy mode )
