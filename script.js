@@ -221,6 +221,7 @@
         }
         console.log('solvable');
         $('.lds-ripple').hide();
+        $('#board').removeClass('loading');
         clearInterval(checker);
         return true;
       } else {
@@ -248,7 +249,7 @@
       } else {
         clearInterval(checker);
       }
-    },2000);
+    },1000);
 
 
     console.log(points);

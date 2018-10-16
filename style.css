@@ -11,6 +11,10 @@
     cursor: pointer;
     z-index: 9999;
 }
+
+#board.loading {
+    opacity: 0.5;
+}
 /*
 [id="1"] {
     top: 0;
