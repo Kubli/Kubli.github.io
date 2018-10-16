@@ -6,7 +6,7 @@ Mathe dollargame
 3. Feld auf 500px x 500px behalten
 
 
-  Wenn danach Anzahl noch zu verteilende Punkte immernoch >= 4 dann nochmal rotierend verteilen, ansonsten komplett random.
+
 
 4. Verteile Geld:
 
@@ -19,6 +19,8 @@ Mathe dollargame
     2. X: 251-500, Y 0-250
     3. X: 251-500, Y: 251-500
     4: X: 0-250, Y: 251-500
+
+    Wenn danach Anzahl noch zu verteilende Punkte immernoch >= 4 dann nochmal rotierend verteilen, ansonsten komplett random.
 
   6. Verbindungen: Durchnschnitt 2 Verbindungen pro Knoten:
     Wähle Random Knoten und mache eine verbindung falls noch keine besteht bis maximal anzahl knoten ( easy mode )
