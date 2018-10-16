@@ -7,9 +7,8 @@
     const points = [];
     var drawnConnections = [];
 
-    function randomIntFromInterval(min,max)
-    {
-      return Math.floor(Math.random()*(max-min+1)+min);
+    function randomIntFromInterval (min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
     function addPoints () {
@@ -20,33 +19,33 @@
         var X = 0;
         var Y = 0;
         positioner++;
-        if(positioner>4){
+        if (positioner > 4) {
 
-          if((points.length -x ) >=4){
+          if ((points.length - x) >= 4) {
             positioner = 0;
           }
         }
 
-        switch(positioner){
+        switch (positioner) {
           case 1:
-            X = randomIntFromInterval(20,230);
-            Y = randomIntFromInterval(20,230);
+            X = randomIntFromInterval(20, 230);
+            Y = randomIntFromInterval(20, 230);
             break;
           case 2:
-            X = randomIntFromInterval(270,480);
-            Y = randomIntFromInterval(20,230);
+            X = randomIntFromInterval(270, 480);
+            Y = randomIntFromInterval(20, 230);
             break;
           case 3:
-            X = randomIntFromInterval(20,230);
-            Y = randomIntFromInterval(270,480);
+            X = randomIntFromInterval(20, 230);
+            Y = randomIntFromInterval(270, 480);
             break;
           case 4:
-            X = randomIntFromInterval(270,480);
-            Y = randomIntFromInterval(270,480);
+            X = randomIntFromInterval(270, 480);
+            Y = randomIntFromInterval(270, 480);
             break;
           default:
-            X = randomIntFromInterval(125,375);
-            Y = randomIntFromInterval(125,375);
+            X = randomIntFromInterval(125, 375);
+            Y = randomIntFromInterval(125, 375);
             break;
 
         }
@@ -58,12 +57,12 @@
         var style = 'top:' + Y + 'px;left:' + X + 'px';
 
 
-        $('#board').append('<input  style="'+style+'" class="point" readonly type="text" id="' + id + '" value="' + value + '" data-connections="' + connections + '"/>')
+        $('#board').append('<input  style="' + style + '" class="point" readonly type="text" id="' + id + '" value="' + value + '" data-connections="' + connections + '"/>')
 
       }
     }
 
-    function drawConnections(){
+    function drawConnections () {
       $('.point').each(function () {
         var spender = $(this);
         var spenderID = $(this).attr('id');
@@ -81,7 +80,7 @@
 
             if (drawnConnections.indexOf("" + end + "-" + start) == -1 && start != end) {
               new LeaderLine(document.getElementById(start), document.getElementById(end), {
-                color: "#000000",
+                color: '#' + Math.floor(Math.random() * 3000).toString(16),
                 startPlug: 'behind',
                 endPlug: 'behind'
               });
@@ -100,12 +99,12 @@
     }
 
 
-    function fixConnections(){
+    function fixConnections () {
       $('.point').each(function () {
         var spenderID = $(this).attr('id');
         var realConnections = points[spenderID]['realConnections']
         realConnections = realConnections.join();
-        $(this).attr('data-connections',realConnections);
+        $(this).attr('data-connections', realConnections);
       });
     }
 
@@ -114,9 +113,21 @@
 
       $('.point').each(function () {
 
+        var $point = $(this);
         var spender = $(this);
         var spenderID = $(this).attr('id');
         var connections = spender.attr('data-connections');
+        var connectionArray = connections.split(',');
+
+
+        $point.hover(function () {
+              for (var i = 0; i < connectionArray.length; i++) {
+                $('#' + connectionArray[i]).addClass('hovered');
+              }
+            },
+            function () {
+              $('.point').removeClass('hovered');
+            });
 
 
         spender.click(function () {
@@ -166,7 +177,7 @@
     }
 
 
-    function cleanupBoard(){
+    function cleanupBoard () {
 
       drawnConnections.length = 0;
       points.length = 0;
@@ -205,18 +216,18 @@
         var point = points[x];
         moneyCount = moneyCount + point["value"];
       }
-      if(moneyCount <0){
-        console.log('not solvable because '+moneyCount+' is not enough money');
+      if (moneyCount < 0) {
+        console.log('not solvable because ' + moneyCount + ' is not enough money');
         loadGame();
         return false;
       }
       genius = connectionsCount - pointCount + 1;
-      console.log('connections='+connectionsCount);
+      console.log('connections=' + connectionsCount);
       console.log('genius=' + genius);
       console.log('money=' + moneyCount);
       if (moneyCount >= genius) {
-        console.log('difficulty: '+(moneyCount-genius));
-        if((moneyCount - genius) > 5){
+        console.log('difficulty: ' + (moneyCount - genius));
+        if ((moneyCount - genius) > 5) {
           console.log('easy solvable');
         }
         console.log('solvable');
@@ -232,7 +243,7 @@
     }
 
 
-    function loadGame(){
+    function loadGame () {
       generateNodes(nodesNumber);
       addPoints();
       drawConnections();
@@ -242,14 +253,14 @@
 
     loadGame();
     var checked = 0;
-    var checker = setInterval(function() {
+    var checker = setInterval(function () {
       checked++;
-      if(checked <=10) {
+      if (checked <= 10) {
         checkIfSolveable();
       } else {
         clearInterval(checker);
       }
-    },1000);
+    }, 1000);
 
 
     console.log(points);

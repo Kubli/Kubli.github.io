@@ -3,13 +3,17 @@
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: black;
+    background: #595a58;
     color: white;
     font-weight: bold;
     text-align: center;
     border: none;
     cursor: pointer;
     z-index: 9999;
+}
+
+.point.hovered{
+    background: black;
 }
 
 #board.loading {
