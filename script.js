@@ -110,6 +110,7 @@
 
 
     function sendMoney (sender, to) {
+      console.log(to);
       var recipients = to.split(',');
       var senderValue = $('#' + sender).val();
       var sentValue = recipients.length;
@@ -177,7 +178,11 @@
       var moneyCount = 0;
       for (var x = 0; x < points.length; x++) {
         var point = points[x];
-        moneyCount = point["value"];
+        moneyCount = moneyCount + point["value"];
+      }
+      if(moneyCount <0){
+        console.log('not solvable because '+moneyCount+' is not enough money');
+        return;
       }
       var genius = connectionsCount - pointCount + 1;
       console.log('connections='+connectionsCount);
@@ -194,8 +199,8 @@
     generateNodes(5);
     addPoints(points);
     drawConnections();
-    addFunctionality();
     fixConnections();
+    addFunctionality();
     checkIfSolveable();
     console.log(points);
 
