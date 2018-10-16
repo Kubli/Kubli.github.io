@@ -72,7 +72,6 @@
 
         for (var i = 0; i < recipients.length; i++) {
 
-
           var start = String(spenderID);
           var end = String(recipients[i]);
           if (start != null && end != null) {
@@ -80,7 +79,7 @@
 
             if (drawnConnections.indexOf("" + end + "-" + start) == -1 && start != end) {
               new LeaderLine(document.getElementById(start), document.getElementById(end), {
-                color: '#' + Math.floor(Math.random() * 3000).toString(16),
+                color: randomColor(),
                 startPlug: 'behind',
                 endPlug: 'behind'
               });
